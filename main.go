@@ -7,7 +7,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sirupsen/logrus"
 	"github.com/mintance/nginx-clickhouse/clickhouse"
 	configParser "github.com/mintance/nginx-clickhouse/config"
 	"github.com/mintance/nginx-clickhouse/nginx"
@@ -15,6 +14,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/sirupsen/logrus"
 )
 
 var (
@@ -79,7 +79,8 @@ func main() {
 
 				logrus.Info("Preparing to save ", len(logs), " new log entries.")
 				locker.Lock()
-				err := clickhouse.Save(config, nginx.ParseLogs(nginxParser, logs))
+				xlog := nginx.ParseLogs(nginxParser, logs)
+				err := clickhouse.Save(config, xlog)
 
 				if err != nil {
 					logrus.Error("Can`t save logs: ", err)

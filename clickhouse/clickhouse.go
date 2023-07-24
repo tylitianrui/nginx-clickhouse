@@ -1,12 +1,13 @@
 package clickhouse
 
 import (
+	"net/url"
+	"reflect"
+
 	"github.com/mintance/go-clickhouse"
 	"github.com/mintance/nginx-clickhouse/config"
 	"github.com/mintance/nginx-clickhouse/nginx"
 	"github.com/satyrius/gonx"
-	"net/url"
-	"reflect"
 	"github.com/sirupsen/logrus"
 )
 

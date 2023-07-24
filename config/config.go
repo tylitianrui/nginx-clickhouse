@@ -17,12 +17,13 @@ type Config struct {
 		SeekFromEnd bool   `yaml:"seek_from_end"`
 	} `yaml:"settings"`
 	ClickHouse struct {
-		Db          string            `yaml:"db"`
-		Table       string            `yaml:"table"`
-		Host        string            `yaml:"host"`
-		Port        string            `yaml:"port"`
-		Columns     map[string]string `yaml:"columns"`
-		Credentials struct {
+		Db            string            `yaml:"db"`
+		Table         string            `yaml:"table"`
+		Host          string            `yaml:"host"`
+		Port          string            `yaml:"port"`
+		Columns       map[string]string `yaml:"columns"`
+		CustomColumns map[string]string `yaml:"custom_columns"`
+		Credentials   struct {
 			User     string `yaml:"user"`
 			Password string `yaml:"password"`
 		} `yaml:"credentials"`
